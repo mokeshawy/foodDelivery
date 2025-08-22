@@ -6,9 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.saham.fooddelivery.R
-import com.saham.fooddelivery.features.orders_list.domain.model.ui.OrderUiModel
-import com.saham.fooddelivery.features.orders_list.presentation.viewmodel.OrderListViewModel
 import com.saham.fooddelivery.features.common_composaple.OrderItem
+import com.saham.fooddelivery.features.common.domain.model.ui.OrderUiModel
+import com.saham.fooddelivery.features.orders_list.presentation.viewmodel.OrderListViewModel
 import com.tru.ui_component.failure_view.FailureView
 import com.tru.ui_component.main_top_bar.MainTopBar
 import com.tru.ui_component.ui_generic.GeneralLazyColumn
@@ -16,7 +16,8 @@ import com.tru.ui_component.ui_generic.GeneralLazyColumn
 
 @Composable
 fun OrdersListScreen(
-    viewModel: OrderListViewModel = hiltViewModel()
+    viewModel: OrderListViewModel = hiltViewModel(),
+    onNavigateToOrderDetails: (orderId: Int) -> Unit
 ) {
 
     val uiState = viewModel.uiState
@@ -35,7 +36,7 @@ fun OrdersListScreen(
             uiState.orderUiModel?.isNotEmpty() == true -> {
                 OrderListContent(
                     orderListUiModelList = uiState.orderUiModel,
-                    onItemClicked = {}
+                    onItemClicked = { id -> id?.let { onNavigateToOrderDetails(it) } }
                 )
             }
         }
@@ -45,7 +46,7 @@ fun OrdersListScreen(
 @Composable
 fun OrderListContent(
     orderListUiModelList: List<OrderUiModel?>,
-    onItemClicked: (String?) -> Unit
+    onItemClicked: (Int?) -> Unit
 ) {
     GeneralLazyColumn(
         modifier = Modifier.padding(8.dp),

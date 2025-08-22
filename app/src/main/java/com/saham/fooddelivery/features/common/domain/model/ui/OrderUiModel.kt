@@ -1,8 +1,8 @@
-package com.saham.fooddelivery.features.orders_list.domain.model.ui
+package com.saham.fooddelivery.features.common.domain.model.ui
 
 data class OrderUiModel(
     val customerName: String,
-    val id: String,
+    val id: Int,
     val restaurant: String,
     val status: String
 )
