@@ -1,7 +1,7 @@
 package com.saham.fooddelivery.features.orders_list.domain.usecase
 
-import com.saham.fooddelivery.features.orders_list.data.response.OrderResponseDto
-import com.saham.fooddelivery.features.orders_list.domain.mapper.toOrderUiModel
+import com.saham.fooddelivery.features.common.data.response.OrderResponseDto
+import com.saham.fooddelivery.features.common.domain.mapper.toOrderUiModel
 import com.saham.fooddelivery.features.orders_list.domain.repository.OrdersListRepository
 import com.tru.core.state.State
 import kotlinx.coroutines.async

@@ -1,7 +1,7 @@
 package com.saham.fooddelivery.features.orders_list.data.repository
 
 import com.saham.fooddelivery.core.network_services.FoodDevilryServices
-import com.saham.fooddelivery.features.orders_list.data.response.OrderResponseDto
+import com.saham.fooddelivery.features.common.data.response.OrderResponseDto
 import com.saham.fooddelivery.features.orders_list.domain.repository.OrdersListRepository
 import com.tru.core.bases.base_repository.BaseRepository
 import com.tru.core.state.State

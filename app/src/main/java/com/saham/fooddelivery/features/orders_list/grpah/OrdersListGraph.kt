@@ -4,6 +4,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import com.saham.fooddelivery.features.order_details.graph.navigateToOrderDetailsGraph
+import com.saham.fooddelivery.features.order_details.graph.orderDetailsGraph
 import com.saham.fooddelivery.features.orders_list.presentation.OrdersListScreen
 import com.saham.fooddelivery.root_host.RootGraph
 import kotlinx.serialization.Serializable
@@ -22,8 +24,13 @@ fun NavGraphBuilder.orderListGraph(
         startDestination = OrderListScreen::class,
     ) {
         composable<OrderListScreen> {
-            OrdersListScreen()
+            OrdersListScreen(
+                onNavigateToOrderDetails = { orderId ->
+                    navController.navigateToOrderDetailsGraph(orderId = orderId)
+                })
         }
+
+        orderDetailsGraph(navController = navController)
     }
 }
 
