@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.saham.fooddelivery.features.orders_list.grpah.orderListGraph
 import com.saham.fooddelivery.features.spalsh_screen.graph.SplashGraph
 import com.saham.fooddelivery.features.spalsh_screen.graph.splashGraph
 import kotlinx.serialization.Serializable
@@ -22,5 +23,7 @@ internal fun RootNavHost(
         route = RootGraph::class
     ) {
         splashGraph(navController = rootController)
+
+        orderListGraph(navController = rootController)
     }
 }

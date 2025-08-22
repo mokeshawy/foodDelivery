@@ -4,8 +4,10 @@ import com.google.firebase.FirebaseApp
 import com.tru.core.bases.base_application.BaseApplication
 import com.tru.core.crash_reporting.CrashReportingHandler
 import com.tru.core.crash_reporting.crash_reporting_tools.FirebaseCrashReportingTool
+import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
+@HiltAndroidApp
 class FoodDeliveryApplication : BaseApplication() {
 
     @Inject
