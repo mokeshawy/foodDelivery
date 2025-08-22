@@ -1,0 +1,4 @@
+<resources>
+    <string name="kotlinNews">Kotlin News</string>
+    <string name="tapToLoadContent">Tap to load content</string>
+</resources>
