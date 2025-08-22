@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import com.saham.fooddelivery.features.orders_list.grpah.navigateToOrderListGraph
 import com.saham.fooddelivery.features.spalsh_screen.presentation.screen.SplashScreen
 import kotlinx.serialization.Serializable
 
@@ -21,9 +22,7 @@ fun NavGraphBuilder.splashGraph(
         startDestination = SplashScreen::class,
     ) {
         composable<SplashScreen> {
-            SplashScreen(onNavigateToOrderList = {
-                //TODO NAVIGATE TO ORDER-LIST
-            })
+            SplashScreen(onNavigateToOrderList = navController::navigateToOrderListGraph)
         }
     }
 }
