@@ -50,6 +50,8 @@ fun OrderDetailsScreen(
                         restaurant = orderUiModel.restaurant,
                         orderStatus = orderUiModel.status,
                     )
+
+                    viewModel.sendMessage(message = "id: ${orderUiModel.id} status: ${orderUiModel.status}")
                 }
             }
         }
