@@ -28,4 +28,4 @@ include(":app")
 include(":core")
 include(":ui_component")
 include(":networking")
- 
+include(":websocket")

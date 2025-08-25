@@ -9,20 +9,24 @@ import com.saham.fooddelivery.features.order_details.graph.OrderDetailsScreen
 import com.tru.core.bases.base_viewmodel.BaseViewModel
 import com.tru.core.extensions.collectOnFlowState
 import com.tru.core.extensions.viewModelScope
+import com.tru.websocket.WebSocketHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class OrderDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val orderDetailsUseCase: OrderDetailsUseCase
-) :
-    BaseViewModel<OrderDetailsIntent, OrdersDetailsUiState>(OrdersDetailsUiState()) {
+    private val orderDetailsUseCase: OrderDetailsUseCase,
+    private val webSocketHelper: WebSocketHelper
+) : BaseViewModel<OrderDetailsIntent, OrdersDetailsUiState>(OrdersDetailsUiState()) {
 
     val orderId = savedStateHandle.toRoute<OrderDetailsScreen>().orderId
 
     init {
         sendGetOrderDetailsByIdIntent()
+        initWebsocketConnection()
+        onMessageReceived()
     }
 
     fun refresh() {
@@ -55,4 +59,21 @@ class OrderDetailsViewModel @Inject constructor(
 
     private fun resetOrderDetailsUiState() =
         updateStateOf { copy(isLoading = false, error = null, orderUiModel = null) }
+
+
+    private fun initWebsocketConnection() = webSocketHelper.connect()
+
+    fun sendMessage(message: String) = webSocketHelper.sendMessage(message)
+
+    private fun onMessageReceived() {
+        webSocketHelper.onMessageReceived = { message ->
+            Timber.d("onMessageReceived: $message")
+        }
+    }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        webSocketHelper.close()
+    }
 }
