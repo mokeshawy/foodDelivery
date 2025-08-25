@@ -1,0 +1,3 @@
+- Follow the concept separation of concerns
+- Using firebase realtime database & Mock Server
+- Using MVI Architecture

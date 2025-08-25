@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Food Delivery</string>
+    <string name="customerName">Customer Name:</string>
+    <string name="restaurant">restaurant</string>
+    <string name="orderStatus">OrderStatus</string>
+    <string name="orderDetails">Order Details</string>
 </resources>
