@@ -26,7 +26,7 @@ class OrderListViewModel @Inject constructor(
         sendGetOrdersListIntent()
     }
 
-    private fun sendGetOrdersListIntent() = sendIntent(OrderListIntent.GetOrdersListIntent)
+    fun sendGetOrdersListIntent() = sendIntent(OrderListIntent.GetOrdersListIntent)
 
 
     override fun processIntent(intent: OrderListIntent) {
@@ -37,18 +37,18 @@ class OrderListViewModel @Inject constructor(
 
 
     private fun reduceOrdersListResponseState() = viewModelScope {
-        updateStateOf { copy(isLoading = true) }
+        updateStateFlow { copy(isLoading = true) }
         ordersListUseCase().collectOnFlowState(
             onError = {
-                handleError(it) { updateStateOf { copy(isLoading = false, error = it) } }
+                handleError(it) { updateStateFlow { copy(isLoading = false, error = it) } }
             },
             onSuccess = {
                 val ordersListUiModel = ordersListUseCase.ordersListUiModel
-                updateStateOf { copy(isLoading = false, orderUiModel = ordersListUiModel) }
+                updateStateFlow { copy(isLoading = false, orderUiModel = ordersListUiModel) }
             })
     }
 
 
     private fun resetOrdersListUiState() =
-        updateStateOf { copy(isLoading = false, error = null, orderUiModel = null) }
+        updateStateFlow { copy(isLoading = false, error = null, orderUiModel = null) }
 }
